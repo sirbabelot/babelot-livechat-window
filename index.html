@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exclusive Rentals</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <h5> Welcome to exclusive rentals.com! </h5>
+
+    <div id="babelot-chat">
+
+      <div id="babelot-header">
+        Message 1
+        <a onclick='Babelot.toggleMessages()'> min </a>
+      </div>
+
+      <div id='babelot-messages'>
+
+        <div id="babelot-messages-list">
+         <!-- where messages are appended -->
+        </div>
+
+        <div id='babelot-input-panel'>
+          <input type="text" id="babelot-input" onkeypress="Babelot.addMessage(event)">
+        </div>
+
+      </div>
+    </div>
+    <script src="minified-babelot-chat-es5.js"></script>
+  </body>
+</html>

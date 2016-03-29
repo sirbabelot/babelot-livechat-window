@@ -1,0 +1,45 @@
+#babelot-chat {
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+  width: 300px;
+  background: blue;
+}
+
+#babelot-header {
+  background: red!important;
+  height: 40px;
+}
+
+#babelot-messages {
+  height: 380px;
+  background: green;
+}
+
+#babelot-messages-list {
+  height: 350px;
+  background: pink;
+  overflow-y: scroll;
+}
+
+.babelot-messages-hidden {
+  display: none;
+}
+
+.babelot-chat-bubble {
+  margin-bottom: 20px;
+}
+
+.babelot-chat-bubble > .content {
+  display: inline;
+  background: #733D3C;
+  margin-left: 20px;
+  padding: 4px;
+}
+
+#babelot-input {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 30px;
+}

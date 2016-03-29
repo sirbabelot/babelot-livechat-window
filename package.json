@@ -1,0 +1,19 @@
+{
+  "name": "exclusive_rentals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "minified-babelot-chat.js",
+  "scripts": {
+    "compile": "./node_modules/babel-cli/bin/babel.js script.js  --out-file script-es5.js",
+
+    "prebuild": "npm run compile",
+    "build": "./node_modules/uglify-js/bin/uglifyjs script-es5.js > minified-babelot-chat-es5.js",
+    "postbuild": "echo \" the size of the minified file is \" && ls -lh minified-babelot-chat-es5.js && rm script-es5.js"
+
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "uglify-js": "^2.6.2"
+  }
+}

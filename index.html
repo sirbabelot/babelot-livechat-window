@@ -4,18 +4,18 @@
     <title>Exclusive Rentals</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
-  <body>
+  <body style="background:#7E8181">
     <h5> Welcome to exclusive rentals.com! </h5>
 
     <div id="babelot-chat">
 
       <div id="babelot-header">
-        Message 1
-        <a onclick='Babelot.toggleMessages()'> min </a>
+        <div id="nickname"></div>
+        <div id="status"></div>
+        <button id="minButton" onclick='Babelot.toggleMessages()'> &#x2212; </button>
       </div>
 
       <div id='babelot-messages'>
-
         <div id="babelot-messages-list">
          <!-- where messages are appended -->
         </div>
@@ -26,6 +26,9 @@
 
       </div>
     </div>
-    <script src="minified-babelot-chat-es5.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="//cdn.rawgit.com/Valve/fingerprintjs2/master/fingerprint2.js"></script>
+    <script src="build/Messenger.js"></script>
+    <script src="build/Babelot.js"></script>
   </body>
 </html>

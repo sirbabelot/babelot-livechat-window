@@ -9,7 +9,7 @@ gulp.task('default', function() {
     .pipe(webpack(config))
     .pipe(uglify())
     .pipe(intercept(function(file){
-      console.log(file.contents.toString());
       return file;
     }))
+    .pipe(gulp.dest('./build'))
 });

@@ -2,8 +2,6 @@ var chindowHtml = require('raw!html-minify!./template.html');
 var messenger = require('./Messenger.js');
 var styles = require('css?minimize!./styles.css');
 
-console.log(messenger);
-
 var div = document.createElement('div');
 div.innerHTML = chindowHtml;
 document.body.appendChild(div);

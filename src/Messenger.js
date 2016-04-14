@@ -1,3 +1,7 @@
+var io = require('socket.io-client');
+var Fingerprint2 = require('fingerprintjs2');
+
+
 /**
  * Messenger receives and dispatches messages from sockets
  * An event is emitted when a message is received.

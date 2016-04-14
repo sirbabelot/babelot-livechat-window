@@ -9,7 +9,7 @@ var Fingerprint2 = require('fingerprintjs2');
 class Messenger {
 
   constructor() {
-    this.businessId = 'ExclusiveRentals.com';
+    this.businessId = babelotBusinessId;
     this.socket = io(`https://docker.default/${this.businessId}`,
         { path: '/babelot/socket.io' });
 

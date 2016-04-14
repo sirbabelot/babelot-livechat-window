@@ -4,11 +4,20 @@ var uglify = require('gulp-uglify');
 var webpack = require('webpack-stream');
 var config = require('./webpack.config');
 
+
+var babelotBusinessId = 'ExclusiveRentals.com'
+
+config.module.loaders.push({
+  test: /\.js?$/,
+  exclude: /(node_modules)/,
+  loader: `imports?babelotBusinessId=>'${babelotBusinessId}'`
+});
+
 gulp.task('default', function() {
   return gulp.src('src/index.js')
     .pipe(webpack(config))
     .pipe(uglify())
-    .pipe(intercept(function(file){
+    .pipe(intercept((file)=> {
       return file;
     }))
     .pipe(gulp.dest('./build'))

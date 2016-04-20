@@ -4,7 +4,7 @@ var uglify = require('gulp-uglify');
 var webpack = require('webpack-stream');
 var config = require('./webpack.config');
 
-
+// 1. this function, must return production ready scripts
 module.exports = function(businessId, done) {
   var babelotBusinessId = businessId;
 
@@ -23,6 +23,9 @@ module.exports = function(businessId, done) {
       }))
 };
 
+gulp.task('watch', ()=> {
+  gulp.watch('./src/**/*', ['default'])
+});
 
 var babelotBusinessId = 'ExclusiveRentals.com'
 

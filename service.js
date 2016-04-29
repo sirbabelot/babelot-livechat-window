@@ -2,8 +2,10 @@ var amqp = require('amqplib/callback_api');
 var scripter = require('./gulpfile');
 
 amqp.connect(`amqp://${process.env.AMQ_PORT_5672_TCP_ADDR}:${process.env.AMQ_PORT_5672_TCP_PORT}`, function(err, conn) {
+  if (err) {
+    return console.log(err);
+  }
   conn.createChannel(function(err, ch) {
-    if(err) { return console.log(err); }
     var q = 'rpc_queue';
 
     ch.assertQueue(q, {durable: false});

@@ -1,27 +1,29 @@
-var amqp = require('amqplib/callback_api');
+var amqp = require('amqplib');
 var scripter = require('./gulpfile');
 
-amqp.connect(`amqp://${process.env.AMQ_PORT_5672_TCP_ADDR}:${process.env.AMQ_PORT_5672_TCP_PORT}`, function(err, conn) {
-  if (err) {
-    return console.log('I AM A BIG FAT ERROR IN NAILAS BELLY', err);
-  }
-  conn.createChannel(function(err, ch) {
+const BROKER_URL = `amqp://${process.env.AMQ_PORT_5672_TCP_ADDR}:${process.env.AMQ_PORT_5672_TCP_PORT}`;
+
+
+amqp.connect(BROKER_URL).then((connection)=> {
+  return connection.createChannel().then((channel)=> {
     var q = 'rpc_queue';
 
-    ch.assertQueue(q, {durable: false});
-    ch.prefetch(1);
+    channel.assertQueue(q, {durable: false});
+    channel.prefetch(1);
 
-    ch.consume(q, function reply(msg) {
+    channel.consume(q, (msg)=> {
       var msgContent = msg.content.toString();
 
       scripter(msgContent, (file)=> {
-        ch.sendToQueue(msg.properties.replyTo, new Buffer(file), {
+        channel.sendToQueue(msg.properties.replyTo, new Buffer(file), {
           correlationId: msg.properties.correlationId
         });
       });
 
-      ch.ack(msg);
+      channel.ack(msg);
 
     });
   });
-});
+})
+.then(null, console.warn);
+

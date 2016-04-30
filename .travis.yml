@@ -7,5 +7,4 @@ services:
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker build -t bablot/chindow .
-  - docker push bablot/travis-test
-  - chmod 600 key.pem
+  - docker push bablot/chindow

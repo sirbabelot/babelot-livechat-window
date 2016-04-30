@@ -3,7 +3,7 @@ var scripter = require('./gulpfile');
 
 amqp.connect(`amqp://${process.env.AMQ_PORT_5672_TCP_ADDR}:${process.env.AMQ_PORT_5672_TCP_PORT}`, function(err, conn) {
   if (err) {
-    return console.log(err);
+    return console.log('I AM A BIG FAT ERROR IN NAILAS BELLY', err);
   }
   conn.createChannel(function(err, ch) {
     var q = 'rpc_queue';
@@ -14,13 +14,14 @@ amqp.connect(`amqp://${process.env.AMQ_PORT_5672_TCP_ADDR}:${process.env.AMQ_POR
     ch.consume(q, function reply(msg) {
       var msgContent = msg.content.toString();
 
-      scripter(msgContent, (file)=>{
+      scripter(msgContent, (file)=> {
         ch.sendToQueue(msg.properties.replyTo, new Buffer(file), {
           correlationId: msg.properties.correlationId
         });
       });
 
       ch.ack(msg);
+
     });
   });
 });

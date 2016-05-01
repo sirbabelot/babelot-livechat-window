@@ -1,10 +1,19 @@
 var amqp = require('amqplib');
-var scripter = require('./gulpfile');
+var scripter = require('./gulpfile.js');
 
-const BROKER_URL = `amqp://${process.env.AMQ_PORT_5672_TCP_ADDR}:${process.env.AMQ_PORT_5672_TCP_PORT}`;
+const BROKER_URL = `amqp://rabbitmq:5672`;
+var isConnected = false;
 
 
-amqp.connect(BROKER_URL).then((connection)=> {
+// Continuously tries to connect to the rabbitMQ broker
+function rabbitConnect() {
+  return amqp.connect(BROKER_URL)
+    .catch((err)=> {
+      return rabbitConnect();
+    });
+}
+
+rabbitConnect().then((connection)=> {
   return connection.createChannel().then((channel)=> {
     var q = 'rpc_queue';
 
@@ -19,9 +28,7 @@ amqp.connect(BROKER_URL).then((connection)=> {
           correlationId: msg.properties.correlationId
         });
       });
-
       channel.ack(msg);
-
     });
   });
 })

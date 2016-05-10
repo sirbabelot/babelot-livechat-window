@@ -1,4 +1,4 @@
-const APP_PATH = '/home/deploy/app'
+const APP_PATH = '/home/deploy/chindow'
 
 module.exports = function (shipit) {
   shipit.initConfig({

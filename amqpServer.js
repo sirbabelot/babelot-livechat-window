@@ -2,10 +2,7 @@ var amqp = require('amqplib');
 var scripter = require('./gulpfile.js');
 
 const BROKER_URL = `amqp://rabbitmq:5672`;
-// const BROKER_URL = `amqp://localhost`;
-
 var isConnected = false;
-
 
 // Continuously tries to connect to the rabbitMQ broker
 function rabbitConnect() {
@@ -24,7 +21,6 @@ rabbitConnect().then((connection)=> {
 
     channel.consume(q, (msg)=> {
       var msgContent = msg.content.toString();
-      console.log(msgContent);
       scripter(msgContent, (file)=> {
         channel.sendToQueue(msg.properties.replyTo, new Buffer(file), {
           correlationId: msg.properties.correlationId

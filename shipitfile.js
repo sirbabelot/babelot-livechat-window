@@ -12,13 +12,13 @@ module.exports = function (shipit) {
     return shipit
     .remoteCopy('docker-compose.yml', APP_PATH)
         .then(()=> shipit.remoteCopy('docker-compose.prod.yml', APP_PATH))
-        .remote(`
-        cd ${APP_PATH} &&
+        .then(()=> shipit.remote(`
+          cd ${APP_PATH} &&
           docker-compose -f docker-compose.yml -f docker-compose.prod.yml stop &&
           echo "y" | docker-compose -f docker-compose.yml -f docker-compose.prod.yml rm --all &&
           docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull &&
           docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
-      `)
+      `));
   });
 };
 

@@ -8,7 +8,6 @@ module.exports = function (shipit) {
     }
   });
 
-
   shipit.task('deploy', function () {
     return shipit
     .remoteCopy('docker-compose.yml', APP_PATH)
@@ -21,9 +20,5 @@ module.exports = function (shipit) {
           docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
       `));
   });
-
-  // shipit.task('deploy', function () {
-  //   return shipit.remote('ls');
-  // });
 };
 

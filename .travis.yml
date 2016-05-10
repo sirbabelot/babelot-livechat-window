@@ -4,6 +4,10 @@ node_js:
 sudo: required
 services:
   - docker
+branches:
+  only:
+    - travis-chindow
+    - master
 after_success:
   - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker build -t bablot/chindow .

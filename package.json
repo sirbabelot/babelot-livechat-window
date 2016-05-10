@@ -7,7 +7,7 @@
     "predev": "gulp watch &",
     "dev": "lite-server",
     "build": "gulp",
-    "service": "node service.js"
+    "start": "node service.js"
   },
   "repository": {
     "type": "git",

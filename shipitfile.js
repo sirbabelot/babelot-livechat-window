@@ -9,7 +9,10 @@ module.exports = function (shipit) {
   });
 
   shipit.task('deploy', function () {
-    return shipit.remote(`
+    return shipit
+    .remoteCopy('docker-compose.yml', APP_PATH)
+        .then(()=> shipit.remoteCopy('docker-compose.prod.yml', APP_PATH))
+        .remote(`
         cd ${APP_PATH} &&
           docker-compose -f docker-compose.yml -f docker-compose.prod.yml stop &&
           echo "y" | docker-compose -f docker-compose.yml -f docker-compose.prod.yml rm --all &&

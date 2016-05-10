@@ -2,6 +2,7 @@ version: '2'
 services:
   chindow: 
     build: .
+    image: bablot/chindow
     depends_on:
       - rabbitmq
 

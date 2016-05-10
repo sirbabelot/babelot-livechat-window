@@ -8,6 +8,7 @@ module.exports = function (shipit) {
     }
   });
 
+
   shipit.task('deploy', function () {
     return shipit
     .remoteCopy('docker-compose.yml', APP_PATH)

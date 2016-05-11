@@ -10,7 +10,6 @@ WORKDIR /usr/src/app
 COPY . /usr/src/app
 
 # RUN npm install
-
 EXPOSE 15672
 
 CMD [ "node", "amqpServer.js" ]

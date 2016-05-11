@@ -22,7 +22,7 @@ rabbitConnect().then((connection)=> {
     channel.consume(q, (msg)=> {
       var msgContent = msg.content.toString();
       scripter(msgContent, (file)=> {
-        channel.sendToQueue(msg.properties.replyTo, new Buffer("Howdie"), {
+        channel.sendToQueue(msg.properties.replyTo, new Buffer(file), {
           correlationId: msg.properties.correlationId
         });
       });

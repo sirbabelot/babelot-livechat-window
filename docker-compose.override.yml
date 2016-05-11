@@ -1,0 +1,15 @@
+version: '2'
+services:
+  chindow: 
+    build: .
+    image: bablot/chindow
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    image: rabbitmq:3
+    ports:
+      - "5672:5672"
+
+
+

@@ -1,0 +1,6 @@
+version: '2'
+services:
+  chindow: 
+    ports:
+      - "15672:15672"
+
